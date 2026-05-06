@@ -3,22 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JAMESLONE | Digital Creator</title>
+  <title>James Lone | Digital Creator</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/loaders/GLTFLoader.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
   
   <style>
     body { font-family: 'Inter', system-ui, sans-serif; }
-    .hero-bg {
-      background-image: url('https://grok.x.ai/generated-image/jameslone-hero-banner-3d-final');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+    
+    /* HERO FIX */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      min-height: 650px;
+      overflow: hidden;
     }
-    .hero-overlay {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.85));
+    .hero-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
     }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+    }
+
     .nav-link.active { color: #10b981; position: relative; }
     .nav-link.active:after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 2px; background: #10b981; }
   </style>
@@ -26,11 +41,10 @@
 <body class="bg-zinc-950 text-white overflow-x-hidden">
 
   <!-- NAVBAR -->
-  <nav class="fixed top-0 w-full z-50 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md border-b border-zinc-200 dark:border-white/10">
+  <nav class="fixed top-0 w-full z-50 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-b border-zinc-200 dark:border-white/10">
     <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
-      <h1 class="text-2xl font-bold tracking-tighter text-black dark:text-white">JAMESLONE</h1>
+      <h1 class="text-2xl font-bold tracking-tighter text-black dark:text-white">JAMES LONE</h1>
       
-      <!-- Desktop Menu -->
       <div class="hidden md:flex gap-8 text-sm uppercase tracking-widest">
         <a href="#home" class="nav-link hover:text-emerald-400 transition">Home</a>
         <a href="#about" class="nav-link hover:text-emerald-400 transition">About</a>
@@ -48,30 +62,37 @@
         </button>
       </div>
     </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-white/10 py-6">
-      <div class="flex flex-col items-center gap-6 text-lg font-medium">
-        <a href="#home" class="mobile-nav-link">Home</a>
-        <a href="#about" class="mobile-nav-link">About</a>
-        <a href="#work" class="mobile-nav-link">Work</a>
-        <a href="#contact" class="mobile-nav-link">Contact</a>
-      </div>
-    </div>
   </nav>
 
-  <!-- HERO BANNER -->
-  <section id="home" class="min-h-screen hero-bg relative flex items-center justify-center">
-    <div class="hero-overlay absolute inset-0"></div>
+  <!-- HERO - FIXED -->
+  <section id="home" class="hero-section flex items-center justify-center">
+    <canvas id="hero-canvas" class="hero-canvas"></canvas>
     
-    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-16">
-      <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tighter drop-shadow-2xl">JAMESLONE</h1>
-      <p class="text-2xl md:text-4xl text-emerald-400 mb-8 drop-shadow-xl">UI/UX Designer • Software Engineer • Creative Technologist</p>
-      <p class="text-lg md:text-xl text-white/90 max-w-lg mx-auto mb-12">From Nairobi — Crafting beautiful digital experiences through design, code & motion</p>
+    <div class="hero-content text-center px-6 max-w-4xl mx-auto pt-20">
+      <h1 class="text-6xl md:text-8xl font-bold mb-4 tracking-tighter text-black dark:text-white">JAMES LONE</h1>
+      <p class="text-2xl md:text-4xl text-emerald-500 mb-6">UI/UX Designer • Software Engineer • Creative Technologist</p>
+      <p class="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-lg mx-auto mb-10">From Nairobi with pixels, motion & code</p>
       
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#work" class="px-10 py-4 bg-emerald-500 hover:bg-emerald-600 text-black font-semibold rounded-full text-lg transition">View My Work</a>
-        <a href="#contact" class="px-10 py-4 border-2 border-white hover:bg-white hover:text-black rounded-full text-lg transition">Let's Collaborate</a>
+        <a href="#work" class="px-10 py-4 bg-emerald-500 hover:bg-emerald-600 text-black font-semibold rounded-full transition">See My Work</a>
+        <a href="#contact" class="px-10 py-4 border border-black dark:border-white hover:bg-zinc-100 dark:hover:bg-white/10 rounded-full transition">Let's Talk</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT - Now has proper spacing -->
+  <section id="about" class="py-24 bg-white dark:bg-zinc-900">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-5xl font-bold mb-16 text-center text-black dark:text-white">About Me</h2>
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="rounded-3xl overflow-hidden">
+          <img src="https://your-portrait-link.jpg" alt="James Lone" class="w-full h-full object-cover"/>
+        </div>
+        <div class="space-y-6 text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
+          <p>Recent BSc Software Engineering graduate passionate about creating intuitive digital experiences and dynamic visual content.</p>
+          <p>Founder of <span class="text-emerald-500 font-medium">HomiesDanceCrew</span>. I blend design, code, and motion to tell compelling stories.</p>
+          <p>Currently focused on UI/UX, frontend development, and exploring AI interfaces.</p>
+        </div>
       </div>
     </div>
   </section>
