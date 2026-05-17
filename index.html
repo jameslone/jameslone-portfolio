@@ -126,6 +126,33 @@
       background: #2d3748;
       border-radius: 8px;
     }
+    /* Profile Image Card Style */
+    .profile-card {
+      background: rgba(20, 25, 35, 0.6);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 1rem;
+      border: 1px solid rgba(80, 200, 120, 0.4);
+      transition: transform 0.3s ease;
+    }
+    .profile-card:hover {
+      transform: scale(1.02);
+      border-color: #10b981;
+    }
+    .avatar-image {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #10b981;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+    }
+    @media (max-width: 768px) {
+      .avatar-image {
+        width: 140px;
+        height: 140px;
+      }
+    }
   </style>
 </head>
 <body class="bg-[#0a0c10] overflow-x-hidden">
@@ -136,8 +163,11 @@
   <!-- NAVBAR -->
   <nav class="fixed top-0 w-full z-50 bg-[#0a0c10]/80 backdrop-blur-xl border-b border-white/10">
     <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-      <div class="flex items-center gap-2">
-        <i class="fa-brands fa-figma text-emerald-400 text-2xl"></i>
+      <div class="flex items-center gap-3">
+        <!-- Personal Avatar Icon in Navbar (replaces figma icon) -->
+        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-black font-bold text-lg shadow-lg">
+          <span>JL</span>
+        </div>
         <span class="text-xl font-bold heading tracking-tight">JAMES<span class="text-emerald-400">LONE</span></span>
       </div>
       <div class="hidden md:flex gap-8 text-sm font-medium text-zinc-300">
@@ -156,7 +186,7 @@
     </div>
   </nav>
 
-  <!-- HERO SECTION (Available for work) -->
+  <!-- HERO SECTION with SELF CARD -->
   <section id="home" class="min-h-screen flex items-center pt-32 pb-20 relative">
     <div class="max-w-7xl mx-auto px-6 w-full">
       <div class="flex flex-wrap justify-between items-start gap-4 mb-6">
@@ -167,14 +197,39 @@
           <span class="bg-zinc-800/60 rounded-full px-4 py-1.5 text-xs"><i class="far fa-clock"></i> Global Creator</span>
         </div>
       </div>
-      <div class="space-y-4">
-        <h1 class="text-7xl md:text-8xl font-black heading tracking-tighter leading-[1.1]">JAMES<br>LONE</h1>
-        <h2 class="text-3xl md:text-4xl font-medium text-emerald-300/90">UI/UX Designer • Software Engineer • Creative Technologist</h2>
-        <p class="text-xl text-zinc-400 max-w-2xl mt-4">I'm a Global-based digital creator and developer, crafting high-impact digital experiences with a passion for storytelling.</p>
-      </div>
-      <div class="mt-10 flex gap-5 flex-wrap">
-        <a href="#work" class="btn-primary px-8 py-4 rounded-full text-black font-semibold text-lg">Explore my work <i class="fas fa-arrow-right ml-2"></i></a>
-        <a href="#contact" class="btn-outline-light px-8 py-4 rounded-full text-white text-lg">Hire me →</a>
+      
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Left: Text Content -->
+        <div class="space-y-6">
+          <h1 class="text-7xl md:text-8xl font-black heading tracking-tighter leading-[1.1]">JAMES<br>LONE</h1>
+          <h2 class="text-3xl md:text-4xl font-medium text-emerald-300/90">UI/UX Designer • Software Engineer • Creative Technologist</h2>
+          <p class="text-xl text-zinc-400 max-w-2xl mt-2">I'm a Global-based digital creator and developer, crafting high-impact digital experiences with a passion for storytelling.</p>
+          <div class="mt-6 flex gap-5 flex-wrap">
+            <a href="#work" class="btn-primary px-8 py-4 rounded-full text-black font-semibold text-lg">Explore my work <i class="fas fa-arrow-right ml-2"></i></a>
+            <a href="#contact" class="btn-outline-light px-8 py-4 rounded-full text-white text-lg">Hire me →</a>
+          </div>
+        </div>
+        
+        <!-- Right: SELF CARD with Profile Image -->
+        <div class="flex justify-center md:justify-end">
+          <div class="profile-card text-center p-6 rounded-3xl w-80">
+            <div class="flex justify-center mb-4">
+              <!-- REPLACE 'YOUR_AVATAR_URL_HERE' WITH YOUR ACTUAL IMAGE LINK -->
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="James Lone Avatar" class="avatar-image">
+            </div>
+            <h3 class="text-2xl font-bold heading">James Lone</h3>
+            <p class="text-emerald-400 text-sm mt-1">Digital Creator & Framer Developer</p>
+            <div class="flex justify-center gap-3 mt-4">
+              <i class="fab fa-twitter text-zinc-400 hover:text-emerald-400 transition"></i>
+              <i class="fab fa-github text-zinc-400 hover:text-emerald-400 transition"></i>
+              <i class="fab fa-instagram text-zinc-400 hover:text-emerald-400 transition"></i>
+              <i class="fab fa-linkedin text-zinc-400 hover:text-emerald-400 transition"></i>
+            </div>
+            <div class="mt-5 pt-3 border-t border-white/10">
+              <p class="text-xs text-zinc-500"><i class="fas fa-map-marker-alt text-emerald-400 mr-1"></i> Nairobi / Global</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -237,7 +292,7 @@
         <div class="glass-card rounded-3xl p-8">
           <i class="fas fa-quote-left text-emerald-400 text-3xl mb-4"></i>
           <p class="text-zinc-200 text-lg italic">My creative journey started with blending art and code. Over 9+ years, I’ve helped startups and global brands humanize their digital presence. From immersive 3D concepts to pixel-perfect interactions, every project is a story.</p>
-          <div class="mt-6 flex gap-4 text-sm"><i class="fas fa-phone-alt text-emerald-400"></i> +1 (555) 123-4567 &nbsp;|&nbsp; <i class="far fa-envelope text-emerald-400"></i> james@example.com</div>
+          <div class="mt-6 flex gap-4 text-sm"><i class="fas fa-phone-alt text-emerald-400"></i> +254 (703) 726-553 &nbsp;|&nbsp; <i class="far fa-envelope text-emerald-400"></i> wambuajames690.com</div>
         </div>
       </div>
     </div>
@@ -357,7 +412,7 @@
     © Copyright 2021. All Rights Reserved by JamesLone — Digital Creator
   </footer>
 
-  <!-- Three.js 3D Background -->
+  <!-- Three.js 3D Background (same as before) -->
   <script type="importmap">
     {
       "imports": {
@@ -422,7 +477,7 @@
   <script>
     // GSAP Scroll Animations
     gsap.registerPlugin(ScrollTrigger);
-    gsap.utils.toArray('section, .glass-card, .flip-card').forEach(el => {
+    gsap.utils.toArray('section, .glass-card, .flip-card, .profile-card').forEach(el => {
       gsap.from(el, {
         scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' },
         y: 40,
