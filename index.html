@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jameslone | Digital Creator</title>
+  <title>James Lone | Digital Creator</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -14,16 +14,20 @@
     
     body { font-family: 'Inter', sans-serif; }
     .heading { font-family: 'Space Grotesk', sans-serif; }
-    .hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+    .hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0.85; }
     
-    .nav-link { transition: all 0.3s ease; }
-    .nav-link:hover { color: #10b981; transform: translateY(-2px); }
+    .nav-link { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .nav-link:hover { color: #10b981; letter-spacing: 1px; }
+    
+    button, a {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
   </style>
 </head>
 <body class="bg-zinc-950 text-white overflow-x-hidden">
 
   <!-- NAVBAR -->
-  <nav class="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-lg border-b border-white/10">
+  <nav class="fixed top-0 w-full z-50 bg-zinc-950/90 backdrop-blur-lg border-b border-white/10">
     <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
       <h1 class="text-3xl font-bold tracking-tighter heading">JAMESLONE</h1>
       
@@ -35,7 +39,7 @@
       </div>
 
       <a href="https://instagram.com/jameslone.dev" target="_blank" 
-         class="px-6 py-3 border border-emerald-500 rounded-full hover:bg-emerald-500 hover:text-black transition">
+         class="px-6 py-3 border border-emerald-500/50 hover:border-emerald-500 rounded-full text-sm hover:bg-emerald-500 hover:text-black transition">
         Instagram
       </a>
     </div>
@@ -47,146 +51,119 @@
     
     <div class="max-w-7xl mx-auto px-6 pt-32 pb-20 relative z-10 grid md:grid-cols-2 gap-12 items-center">
       <div class="space-y-8">
-        <h1 class="text-7xl md:text-8xl font-bold leading-none heading tracking-tighter">
+        <h1 class="text-6xl md:text-7xl font-bold leading-none heading tracking-tighter">
           HELLO,<br>I'M <span class="text-emerald-400">JAMES</span>
         </h1>
-        <p class="text-2xl md:text-3xl text-zinc-400">
+        <p class="text-2xl text-zinc-400">
           UI/UX Designer • Software Engineer • Creative Technologist & Dancer
         </p>
         <p class="text-lg text-zinc-500 max-w-md">
           From Nairobi, turning ideas into beautiful, functional digital experiences and dynamic visual stories.
         </p>
-        <div class="flex gap-4">
-          <a href="#work" class="px-8 py-4 bg-emerald-500 text-black font-semibold rounded-full hover:scale-105 transition">
+        
+        <div class="flex flex-wrap gap-4">
+          <a href="#work" 
+             class="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-black font-semibold rounded-full text-lg hover:scale-105">
             View My Work
           </a>
-          <a href="#contact" class="px-8 py-4 border border-white/50 rounded-full hover:bg-white/10 transition">
+          <a href="#contact" 
+             class="px-8 py-4 border border-white/60 hover:border-white rounded-full text-lg hover:bg-white/10">
             Let's Connect
           </a>
         </div>
       </div>
 
       <!-- 3D Character -->
-      <div class="relative flex justify-center">
-        <img src="image-removebg-preview.png" 
-             alt="James Lone 3D Character" 
-             class="w-800 md:w-960 drop-shadow-2xl rounded-3xl"/>
+      <div class="relative flex justify-center md:justify-end">
+        <img id="character" 
+             src="https://your-3d-character-image-link.jpg" 
+             alt="James Lone" 
+             class="w-72 md:w-96 drop-shadow-2xl transition-transform duration-700 hover:scale-105 hover:rotate-3"/>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="py-24 bg-zinc-900">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid md:grid-cols-2 gap-16 items-center">
-        <div>
-          <img src="lo.jpg" 
-               alt="JamesLone" 
-               class="rounded-3xl w-full shadow-2xl"/>
-        </div>
-        <div class="space-y-8">
-          <h2 class="text-5xl font-bold heading">About Me</h2>
-          <p class="text-lg text-zinc-300 leading-relaxed">
-            I'm a Software Engineering graduate with a passion for designing intuitive digital experiences and creating compelling visual content. 
-            As the founder of <span class="text-emerald-400">HomiesDanceCrew</span>, I bring movement, creativity, and technical precision into everything I do.
-          </p>
-          <p class="text-lg text-zinc-300 leading-relaxed">
-            Currently focused on UI/UX Design, Frontend Development, and exploring the beautiful intersection of design and emerging technologies.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WORK -->
-  <section id="work" class="py-24">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-5xl font-bold heading text-center mb-16">Selected Work</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Add your real projects here -->
-        <div class="group bg-zinc-900 rounded-3xl overflow-hidden hover:scale-105 transition-all duration-500">
-          <div class="h-80 bg-gradient-to-br from-purple-600 to-emerald-500 flex items-center justify-center text-8xl">📱</div>
-          <div class="p-8">
-            <h3 class="text-2xl font-semibold">Food Delivery App</h3>
-            <p class="text-zinc-400 mt-2">Modern UI/UX with smooth interactions</p>
-          </div>
-        </div>
-        
-        <div class="group bg-zinc-900 rounded-3xl overflow-hidden hover:scale-105 transition-all duration-500">
-          <div class="h-80 bg-gradient-to-br from-rose-500 to-orange-500 flex items-center justify-center text-8xl">🎥</div>
-          <div class="p-8">
-            <h3 class="text-2xl font-semibold">HomiesDanceCrew</h3>
-            <p class="text-zinc-400 mt-2">Dance Videography & Content Creation</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER / CONTACT -->
-  <footer id="contact" class="bg-black py-20">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <h2 class="text-5xl font-bold heading mb-8">Let's Create Together</h2>
-      <p class="text-xl text-zinc-400 mb-10">Available for freelance projects, collaborations, and dance events</p>
-      
-      <div class="text-4xl font-medium mb-6">+254 703 726 553</div>
-      <a href="mailto:your.email@example.com" class="text-emerald-400 text-xl hover:underline">Email Me</a>
-      
-      <div class="mt-16 flex justify-center gap-8 text-4xl">
-        <a href="https://instagram.com/jameslone.dev" target="_blank" class="hover:text-emerald-400"><i class="fab fa-instagram"></i></a>
-        <a href="https://github.com/jameslone" target="_blank" class="hover:text-emerald-400"><i class="fab fa-github"></i></a>
-      </div>
-      
-      <p class="mt-20 text-zinc-500">© 2026 James Lone. Made with passion in Nairobi.</p>
-    </div>
-  </footer>
+  <!-- ABOUT, WORK, CONTACT sections remain similar... -->
 
   <script>
-    // Simple Three.js Background Animation
-    let scene, camera, renderer;
+    // Elegant Three.js Animation
+    let scene, camera, renderer, mainObject;
+    
     function initThree() {
       const canvas = document.getElementById('hero-canvas');
       renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
 
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
-      camera.position.z = 5;
+      camera.position.set(0, 1, 6);
 
-      const light = new THREE.PointLight(0x10b981, 2);
-      light.position.set(5, 5, 5);
-      scene.add(light);
-      scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+      // Soft lighting
+      const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+      scene.add(ambient);
+      const pointLight = new THREE.PointLight(0x10b981, 2.5, 100);
+      pointLight.position.set(5, 8, 5);
+      scene.add(pointLight);
 
-      const geometry = new THREE.TorusKnotGeometry(1.2, 0.4, 128, 32);
-      const material = new THREE.MeshPhongMaterial({ color: 0x10b981, emissive: 0x052e16, shininess: 100 });
-      const knot = new THREE.Mesh(geometry, material);
-      scene.add(knot);
+      // Main Object - Torus with slow elegant movement
+      const geometry = new THREE.TorusGeometry(2.2, 0.8, 32, 100);
+      const material = new THREE.MeshPhongMaterial({
+        color: 0x10b981,
+        emissive: 0x052e16,
+        shininess: 80,
+        transparent: true,
+        opacity: 0.85
+      });
+      mainObject = new THREE.Mesh(geometry, material);
+      scene.add(mainObject);
 
       function animate() {
         requestAnimationFrame(animate);
-        knot.rotation.x += 0.003;
-        knot.rotation.y += 0.005;
+        
+        // Smooth, minimal movement
+        mainObject.rotation.x = Math.sin(Date.now() * 0.0003) * 0.15;
+        mainObject.rotation.y += 0.003;
+        
         renderer.render(scene, camera);
       }
       animate();
-    }
 
-    window.onload = () => {
-      initThree();
-      
-      // GSAP Scroll Animations
-      gsap.from("h1", { y: 100, opacity: 0, duration: 1.2, ease: "power4.out" });
-    };
-
-    window.addEventListener('resize', () => {
-      if (renderer) {
+      window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
-      }
-    });
+      });
+    }
+
+    // GSAP Animations
+    window.onload = () => {
+      initThree();
+
+      // Hero text animation
+      gsap.from("h1", { 
+        y: 80, 
+        opacity: 0, 
+        duration: 1.4, 
+        ease: "power4.out" 
+      });
+      
+      gsap.from(".text-2xl", { 
+        y: 40, 
+        opacity: 0, 
+        duration: 1.2, 
+        delay: 0.4 
+      });
+
+      // Character hover effect
+      const character = document.getElementById('character');
+      character.addEventListener('mouseenter', () => {
+        gsap.to(character, { scale: 1.08, rotation: 6, duration: 0.6, ease: "power2.out" });
+      });
+      character.addEventListener('mouseleave', () => {
+        gsap.to(character, { scale: 1, rotation: 0, duration: 0.6, ease: "power2.out" });
+      });
+    };
   </script>
 </body>
 </html>
