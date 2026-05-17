@@ -14,12 +14,7 @@
     
     body { font-family: 'Inter', sans-serif; }
     .heading { font-family: 'Space Grotesk', sans-serif; }
-    .hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0.75; }
-    
-    .nav-link { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-    .nav-link:hover { color: #10b981; letter-spacing: 2px; }
-    
-    .section-title { transition: all 0.6s ease; }
+    .hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
   </style>
 </head>
 <body class="bg-zinc-950 text-white overflow-x-hidden">
@@ -36,10 +31,19 @@
         <a href="#contact" class="nav-link">Contact</a>
       </div>
 
-      <a href="https://instagram.com/jameslone.dev" target="_blank" 
-         class="px-6 py-3 border border-emerald-500/50 hover:border-emerald-500 rounded-full text-sm hover:bg-emerald-500 hover:text-black transition">
-        Instagram
-      </a>
+      <button id="mobile-menu-btn" class="md:hidden text-3xl">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-zinc-900 border-t border-white/10 py-8">
+      <div class="flex flex-col items-center gap-8 text-lg">
+        <a href="#home" class="mobile-link">Home</a>
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#work" class="mobile-link">Work</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+      </div>
     </div>
   </nav>
 
@@ -60,18 +64,13 @@
         </p>
         
         <div class="flex flex-wrap gap-4">
-          <a href="#work" class="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-black font-semibold rounded-full text-lg hover:scale-105 transition">
-            View My Work
-          </a>
-          <a href="#contact" class="px-8 py-4 border border-white/60 hover:border-white rounded-full text-lg hover:bg-white/10 transition">
-            Let's Connect
-          </a>
+          <a href="#work" class="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-black font-semibold rounded-full text-lg hover:scale-105 transition">View My Work</a>
+          <a href="#contact" class="px-8 py-4 border border-white/60 hover:border-white rounded-full text-lg hover:bg-white/10 transition">Let's Connect</a>
         </div>
       </div>
 
       <div class="relative flex justify-center md:justify-end">
-        <img id="character" 
-             src="YOUR_3D_CHARACTER_IMAGE_LINK.jpg" 
+        <img id="character" src="YOUR_3D_CHARACTER_LINK.jpg" 
              alt="James Lone" 
              class="w-72 md:w-96 drop-shadow-2xl transition-all duration-700 hover:scale-110 hover:rotate-6"/>
       </div>
@@ -82,19 +81,17 @@
   <section id="about" class="py-28 bg-zinc-900">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-16 items-center">
-        <div class="order-2 md:order-1">
-          <img src="YOUR_PORTRAIT_PHOTO_LINK.jpg" 
-               alt="James Lone" 
-               class="rounded-3xl w-full shadow-2xl"/>
+        <div>
+          <img src="YOUR_PORTRAIT_LINK.jpg" alt="James Lone" class="rounded-3xl w-full shadow-2xl"/>
         </div>
-        <div class="order-1 md:order-2 space-y-8">
-          <h2 class="text-5xl font-bold heading section-title">About Me</h2>
+        <div class="space-y-8">
+          <h2 class="text-5xl font-bold heading">About Me</h2>
           <p class="text-lg text-zinc-300 leading-relaxed">
-            I'm a recent Software Engineering graduate with a deep passion for creating intuitive digital experiences. 
-            As the founder of <span class="text-emerald-400">HomiesDanceCrew</span>, I bring creativity, motion, and technical precision into every project.
+            Recent BSc Software Engineering graduate and founder of <span class="text-emerald-400">HomiesDanceCrew</span>. 
+            I blend design, code, and motion to create meaningful digital experiences.
           </p>
           <p class="text-lg text-zinc-300 leading-relaxed">
-            I specialize in UI/UX Design, Frontend Development, and Videography. Currently exploring how design and emerging technologies like AI can create meaningful user experiences.
+            Passionate about clean interfaces, intuitive user experiences, and using technology to tell powerful stories.
           </p>
         </div>
       </div>
@@ -104,55 +101,39 @@
   <!-- WORK -->
   <section id="work" class="py-28">
     <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-5xl font-bold heading text-center mb-16 section-title">Selected Work</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        <div class="group bg-zinc-900 rounded-3xl overflow-hidden hover:scale-105 transition-all duration-500">
-          <div class="h-80 bg-gradient-to-br from-purple-600 to-emerald-500 flex items-center justify-center text-8xl">📱</div>
-          <div class="p-8">
-            <h3 class="text-2xl font-semibold mb-2">Food Delivery App</h3>
-            <p class="text-zinc-400">Modern mobile UI/UX with smooth user flows and delightful interactions.</p>
-          </div>
-        </div>
-
-        <div class="group bg-zinc-900 rounded-3xl overflow-hidden hover:scale-105 transition-all duration-500">
-          <div class="h-80 bg-gradient-to-br from-rose-500 to-orange-500 flex items-center justify-center text-8xl">🎥</div>
-          <div class="p-8">
-            <h3 class="text-2xl font-semibold mb-2">HomiesDanceCrew</h3>
-            <p class="text-zinc-400">Dance videography, content creation & brand storytelling.</p>
-          </div>
-        </div>
-
-        <div class="group bg-zinc-900 rounded-3xl overflow-hidden hover:scale-105 transition-all duration-500">
-          <div class="h-80 bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-8xl">🌱</div>
-          <div class="p-8">
-            <h3 class="text-2xl font-semibold mb-2">Plant Care App</h3>
-            <p class="text-zinc-400">Beautiful botanical interface and interactive prototype.</p>
-          </div>
-        </div>
-      </div>
+      <h2 class="text-5xl font-bold heading text-center mb-16">Selected Work</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid"></div>
     </div>
   </section>
 
+  <!-- PROJECT MODAL -->
+  <div id="project-modal" class="hidden fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-4">
+    <div class="bg-zinc-900 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-auto">
+      <div class="p-8">
+        <button id="close-modal" class="float-right text-4xl text-zinc-400 hover:text-white">&times;</button>
+        <div id="modal-content"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- CONTACT -->
   <section id="contact" class="py-28 bg-zinc-900">
-    <div class="max-w-4xl mx-auto text-center px-6">
-      <h2 class="text-5xl font-bold heading mb-8 section-title">Let's Create Something Great</h2>
-      <p class="text-xl text-zinc-400 mb-12">Open for freelance UI/UX projects, videography, and creative collaborations.</p>
+    <div class="max-w-2xl mx-auto text-center px-6">
+      <h2 class="text-5xl font-bold heading mb-8">Let's Create Together</h2>
+      <p class="text-xl text-zinc-400 mb-10">I'm currently available for freelance projects and collaborations.</p>
       
-      <div class="text-5xl font-medium mb-6">+254 703 726 553</div>
-      <a href="mailto:your.email@example.com" class="text-emerald-400 text-2xl hover:underline">Send me an email</a>
-      
-      <div class="mt-20 flex justify-center gap-10 text-5xl">
-        <a href="https://instagram.com/jameslone.dev" target="_blank" class="hover:text-emerald-400 transition"><i class="fab fa-instagram"></i></a>
-        <a href="https://github.com/jameslone" target="_blank" class="hover:text-emerald-400 transition"><i class="fab fa-github"></i></a>
-      </div>
+      <form id="contact-form" class="space-y-6">
+        <input type="text" placeholder="Your Name" class="w-full bg-zinc-800 border border-white/20 rounded-2xl px-6 py-4 focus:outline-none focus:border-emerald-500">
+        <input type="email" placeholder="Your Email" class="w-full bg-zinc-800 border border-white/20 rounded-2xl px-6 py-4 focus:outline-none focus:border-emerald-500">
+        <textarea placeholder="Your Message" rows="5" class="w-full bg-zinc-800 border border-white/20 rounded-2xl px-6 py-4 focus:outline-none focus:border-emerald-500"></textarea>
+        <button type="submit" class="w-full py-4 bg-emerald-500 text-black font-semibold rounded-2xl hover:bg-emerald-600 transition">Send Message</button>
+      </form>
     </div>
   </section>
 
   <script>
-    // Minimal & Elegant Three.js Ring
-    let scene, camera, renderer, ring;
+    // === THREE.JS WITH PARTICLES & SUBTLE TORUS ===
+    let scene, camera, renderer, torus, particles;
     
     function initThree() {
       const canvas = document.getElementById('hero-canvas');
@@ -162,30 +143,58 @@
 
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
-      camera.position.set(0, 0.5, 7);
+      camera.position.set(0, 1, 8);
 
-      const ambient = new THREE.AmbientLight(0xffffff, 0.5);
-      scene.add(ambient);
-      const pointLight = new THREE.PointLight(0x10b981, 2, 100);
+      // Lights
+      scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+      const pointLight = new THREE.PointLight(0x10b981, 2.5);
       pointLight.position.set(5, 5, 5);
       scene.add(pointLight);
 
-      // Very subtle ring
-      const geometry = new THREE.TorusGeometry(2.8, 0.6, 32, 80);
+      // Subtle Torus (moved to left on desktop)
+      const geometry = new THREE.TorusGeometry(2.5, 0.6, 32, 80);
       const material = new THREE.MeshPhongMaterial({
         color: 0x10b981,
         emissive: 0x052e16,
-        shininess: 60,
+        shininess: 50,
         transparent: true,
-        opacity: 0.65
+        opacity: 0.7
       });
-      ring = new THREE.Mesh(geometry, material);
-      scene.add(ring);
+      torus = new THREE.Mesh(geometry, material);
+      scene.add(torus);
+
+      // Particle Effect
+      const particlesGeometry = new THREE.BufferGeometry();
+      const count = 800;
+      const positions = new Float32Array(count * 3);
+      for(let i = 0; i < count * 3; i++) {
+        positions[i] = (Math.random() - 0.5) * 15;
+      }
+      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      
+      const particlesMaterial = new THREE.PointsMaterial({
+        size: 0.03,
+        color: 0x34d399,
+        transparent: true,
+        opacity: 0.6
+      });
+      particles = new THREE.Points(particlesGeometry, particlesMaterial);
+      scene.add(particles);
 
       function animate() {
         requestAnimationFrame(animate);
-        ring.rotation.y += 0.0025;           // Very slow & elegant
-        ring.rotation.x = Math.sin(Date.now() * 0.0004) * 0.08;
+        
+        torus.rotation.y += 0.002;
+        torus.rotation.x = Math.sin(Date.now() * 0.0005) * 0.1;
+        
+        // Move torus to left on desktop
+        if (window.innerWidth > 768) {
+          torus.position.x = -2.5;
+        } else {
+          torus.position.x = 0;
+        }
+        
+        particles.rotation.y += 0.0003;
         renderer.render(scene, camera);
       }
       animate();
@@ -197,26 +206,64 @@
       });
     }
 
-    // Scroll Triggered Animations
+    // Projects with Modal
+    const projects = [
+      { title: "Food Delivery App", desc: "Modern mobile UI/UX", emoji: "📱", long: "Intuitive food ordering experience with smooth animations." },
+      { title: "HomiesDanceCrew", desc: "Dance Videography", emoji: "🎥", long: "High-energy content creation for dance performances." },
+      { title: "Plant Care App", desc: "Botanical UI Design", emoji: "🌱", long: "Beautiful interface for plant lovers with tracking features." }
+    ];
+
+    function createProjects() {
+      const container = document.getElementById('projects-grid');
+      container.innerHTML = '';
+      projects.forEach(project => {
+        const div = document.createElement('div');
+        div.className = "group bg-zinc-900 rounded-3xl overflow-hidden hover:scale-105 transition-all cursor-pointer";
+        div.innerHTML = `
+          <div class="h-80 bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-8xl">${project.emoji}</div>
+          <div class="p-8">
+            <h3 class="text-2xl font-semibold">${project.title}</h3>
+            <p class="text-zinc-400 mt-2">${project.desc}</p>
+          </div>
+        `;
+        div.onclick = () => showModal(project);
+        container.appendChild(div);
+      });
+    }
+
+    function showModal(project) {
+      document.getElementById('modal-content').innerHTML = `
+        <h2 class="text-4xl font-bold mb-6">${project.title}</h2>
+        <p class="text-xl text-zinc-400">${project.long}</p>
+      `;
+      document.getElementById('project-modal').classList.remove('hidden');
+    }
+
+    // Initialize Everything
     window.onload = () => {
       initThree();
+      createProjects();
 
-      // Hero Animation
-      gsap.from("h1", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" });
-      gsap.from(".text-2xl", { y: 60, opacity: 0, duration: 1.3, delay: 0.4 });
+      // Mobile Menu
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
 
-      // Section Animations on Scroll
-      gsap.utils.toArray('section').forEach((section, i) => {
+      // Close Modal
+      document.getElementById('close-modal').addEventListener('click', () => {
+        document.getElementById('project-modal').classList.add('hidden');
+      });
+
+      // Scroll Animations
+      gsap.utils.toArray('section').forEach(section => {
         gsap.from(section, {
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-          },
+          scrollTrigger: { trigger: section, start: "top 80%" },
           y: 80,
           opacity: 0,
           duration: 1.2,
-          ease: "power3.out",
-          delay: i * 0.1
+          ease: "power3.out"
         });
       });
     };
