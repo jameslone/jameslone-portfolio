@@ -130,33 +130,39 @@
 
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
-      camera.position.set(0, 1.5, 8);
+      camera.position.set(0, 1, 9);
 
-      scene.add(new THREE.AmbientLight(0xffffff, 0.7));
-      const pointLight = new THREE.PointLight(0x10b981, 2.5);
-      pointLight.position.set(5, 10, 8);
+      scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+      const pointLight = new THREE.PointLight(0x10b981, 2);
+      pointLight.position.set(5, 8, 10);
       scene.add(pointLight);
 
-      // Smaller Torus
+      // Subtle Sphere instead of big Torus
       mainObject = new THREE.Mesh(
-        new THREE.TorusGeometry(1.8, 0.6, 32, 80),
-        new THREE.MeshPhongMaterial({ color: 0x10b981, emissive: 0x052e16, shininess: 70 })
+        new THREE.SphereGeometry(1.6, 48, 48),
+        new THREE.MeshPhongMaterial({ 
+          color: 0x10b981, 
+          emissive: 0x052e16, 
+          shininess: 60,
+          transparent: true,
+          opacity: 0.75
+        })
       );
       scene.add(mainObject);
 
-      // Natural Particles
-      const particleCount = 900;
+      // Natural Floating Particles
+      const particleCount = 800;
       const positions = new Float32Array(particleCount * 3);
       const velocities = new Float32Array(particleCount * 3);
 
       for (let i = 0; i < particleCount * 3; i += 3) {
-        positions[i]     = (Math.random() - 0.5) * 18;
-        positions[i + 1] = (Math.random() - 0.5) * 14;
-        positions[i + 2] = (Math.random() - 0.5) * 10;
+        positions[i]     = (Math.random() - 0.5) * 20;
+        positions[i + 1] = (Math.random() - 0.5) * 16;
+        positions[i + 2] = (Math.random() - 0.5) * 12;
 
-        velocities[i]     = (Math.random() - 0.5) * 0.008;
-        velocities[i + 1] = (Math.random() - 0.5) * 0.008;
-        velocities[i + 2] = (Math.random() - 0.5) * 0.006;
+        velocities[i]     = (Math.random() - 0.5) * 0.006;
+        velocities[i + 1] = (Math.random() - 0.5) * 0.006;
+        velocities[i + 2] = (Math.random() - 0.5) * 0.004;
       }
 
       const geometry = new THREE.BufferGeometry();
@@ -164,9 +170,9 @@
 
       const material = new THREE.PointsMaterial({
         color: 0x34d399,
-        size: 0.038,
+        size: 0.035,
         transparent: true,
-        opacity: 0.75,
+        opacity: 0.65,
         blending: THREE.AdditiveBlending
       });
 
@@ -182,33 +188,33 @@
       function animate() {
         requestAnimationFrame(animate);
 
-        mouse.x += (targetMouse.x - mouse.x) * 0.05;
-        mouse.y += (targetMouse.y - mouse.y) * 0.05;
+        mouse.x += (targetMouse.x - mouse.x) * 0.04;
+        mouse.y += (targetMouse.y - mouse.y) * 0.04;
 
-        mainObject.rotation.y += 0.002;
+        mainObject.rotation.y += 0.0015;
 
         const pos = particles.geometry.attributes.position;
         const vel = particles.userData.velocities;
 
         for (let i = 0; i < particleCount * 3; i += 3) {
-          const dx = mouse.x * 5 - pos.array[i];
-          const dy = mouse.y * 4 - pos.array[i + 1];
+          const dx = mouse.x * 4 - pos.array[i];
+          const dy = mouse.y * 3.5 - pos.array[i + 1];
 
-          vel[i]     += dx * 0.0003;
-          vel[i + 1] += dy * 0.0003;
+          vel[i]     += dx * 0.00015;
+          vel[i + 1] += dy * 0.00015;
 
           pos.array[i]     += vel[i];
           pos.array[i + 1] += vel[i + 1];
           pos.array[i + 2] += vel[i + 2];
 
-          vel[i] *= 0.965;
-          vel[i + 1] *= 0.965;
-          vel[i + 2] *= 0.965;
+          vel[i] *= 0.97;
+          vel[i + 1] *= 0.97;
+          vel[i + 2] *= 0.97;
 
-          // Gentle reset for natural flow
-          if (Math.abs(pos.array[i]) > 11 || Math.abs(pos.array[i + 1]) > 9) {
-            pos.array[i] = (Math.random() - 0.5) * 16;
-            pos.array[i + 1] = 8 + Math.random() * 4;
+          // Natural reset
+          if (Math.abs(pos.array[i + 1]) > 10) {
+            pos.array[i + 1] = 9;
+            vel[i + 1] = (Math.random() - 0.5) * 0.01;
           }
         }
 
@@ -229,8 +235,8 @@
 
       const character = document.getElementById('character');
       gsap.fromTo(character, 
-        { y: -800, rotation: -40, opacity: 0 },
-        { y: 0, rotation: 0, opacity: 1, duration: 2.1, ease: "bounce.out", delay: 0.4 }
+        { y: -800, rotation: -35, opacity: 0 },
+        { y: 0, rotation: 0, opacity: 1, duration: 2.2, ease: "bounce.out", delay: 0.4 }
       );
 
       character.addEventListener('mouseenter', () => gsap.to(character, { scale: 1.12, rotation: 12, duration: 0.7 }));
