@@ -64,7 +64,6 @@
         </div>
       </div>
 
-      <!-- Falling Character -->
       <div class="relative flex justify-center md:justify-end">
         <img id="character" 
              src="https://i.imgur.com/YOUR_3D_CHARACTER_LINK.jpg" 
@@ -79,9 +78,7 @@
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-16 items-center">
         <div>
-          <img src="https://i.imgur.com/YOUR_PORTRAIT_LINK.jpg" 
-               alt="James Lone" 
-               class="rounded-3xl w-full shadow-2xl"/>
+          <img src="https://i.imgur.com/YOUR_PORTRAIT_LINK.jpg" alt="James Lone" class="rounded-3xl w-full shadow-2xl"/>
         </div>
         <div class="space-y-8">
           <h2 class="text-5xl font-bold heading">About Me</h2>
@@ -103,17 +100,11 @@
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="group bg-zinc-900 rounded-3xl overflow-hidden hover:scale-105 transition-all duration-500">
           <div class="h-72 bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center text-8xl">📱</div>
-          <div class="p-8">
-            <h3 class="text-2xl font-semibold">Food Delivery App</h3>
-            <p class="text-zinc-400 mt-2">Modern UI/UX Design</p>
-          </div>
+          <div class="p-8"><h3 class="text-2xl font-semibold">Food Delivery App</h3></div>
         </div>
         <div class="group bg-zinc-900 rounded-3xl overflow-hidden hover:scale-105 transition-all duration-500">
           <div class="h-72 bg-gradient-to-br from-rose-500 to-orange-500 flex items-center justify-center text-8xl">🎥</div>
-          <div class="p-8">
-            <h3 class="text-2xl font-semibold">HomiesDanceCrew</h3>
-            <p class="text-zinc-400 mt-2">Dance Videography</p>
-          </div>
+          <div class="p-8"><h3 class="text-2xl font-semibold">HomiesDanceCrew</h3></div>
         </div>
       </div>
     </div>
@@ -139,50 +130,50 @@
 
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
-      camera.position.set(0, 1, 6);
+      camera.position.set(0, 1.5, 8);
 
-      scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-      const pointLight = new THREE.PointLight(0x10b981, 2.8);
+      scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+      const pointLight = new THREE.PointLight(0x10b981, 2.5);
       pointLight.position.set(5, 10, 8);
       scene.add(pointLight);
 
-      // Main Torus
-      const torusGeo = new THREE.TorusGeometry(2.6, 0.9, 32, 100);
-      const torusMat = new THREE.MeshPhongMaterial({ color: 0x10b981, emissive: 0x052e16, shininess: 80 });
-      mainObject = new THREE.Mesh(torusGeo, torusMat);
+      // Smaller Torus
+      mainObject = new THREE.Mesh(
+        new THREE.TorusGeometry(1.8, 0.6, 32, 80),
+        new THREE.MeshPhongMaterial({ color: 0x10b981, emissive: 0x052e16, shininess: 70 })
+      );
       scene.add(mainObject);
 
-      // Particles with Mouse Interaction
-      const particleCount = 800;
+      // Natural Particles
+      const particleCount = 900;
       const positions = new Float32Array(particleCount * 3);
       const velocities = new Float32Array(particleCount * 3);
 
       for (let i = 0; i < particleCount * 3; i += 3) {
-        positions[i]     = (Math.random() - 0.5) * 15;
-        positions[i + 1] = (Math.random() - 0.5) * 12;
-        positions[i + 2] = (Math.random() - 0.5) * 8;
+        positions[i]     = (Math.random() - 0.5) * 18;
+        positions[i + 1] = (Math.random() - 0.5) * 14;
+        positions[i + 2] = (Math.random() - 0.5) * 10;
 
-        velocities[i]     = (Math.random() - 0.5) * 0.015;
-        velocities[i + 1] = (Math.random() - 0.5) * 0.015;
-        velocities[i + 2] = (Math.random() - 0.5) * 0.01;
+        velocities[i]     = (Math.random() - 0.5) * 0.008;
+        velocities[i + 1] = (Math.random() - 0.5) * 0.008;
+        velocities[i + 2] = (Math.random() - 0.5) * 0.006;
       }
 
-      const particlesGeo = new THREE.BufferGeometry();
-      particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
-      const particlesMat = new THREE.PointsMaterial({
+      const material = new THREE.PointsMaterial({
         color: 0x34d399,
-        size: 0.04,
+        size: 0.038,
         transparent: true,
         opacity: 0.75,
         blending: THREE.AdditiveBlending
       });
 
-      particles = new THREE.Points(particlesGeo, particlesMat);
+      particles = new THREE.Points(geometry, material);
       scene.add(particles);
       particles.userData.velocities = velocities;
 
-      // Mouse Movement
       window.addEventListener('mousemove', (e) => {
         targetMouse.x = (e.clientX / window.innerWidth) * 2 - 1;
         targetMouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -191,51 +182,37 @@
       function animate() {
         requestAnimationFrame(animate);
 
-        // Smooth mouse follow
-        mouse.x += (targetMouse.x - mouse.x) * 0.08;
-        mouse.y += (targetMouse.y - mouse.y) * 0.08;
+        mouse.x += (targetMouse.x - mouse.x) * 0.05;
+        mouse.y += (targetMouse.y - mouse.y) * 0.05;
 
-        // Torus
-        mainObject.rotation.y += 0.003;
+        mainObject.rotation.y += 0.002;
 
-        // Particle Physics + Mouse Attraction
-        const posAttr = particles.geometry.attributes.position;
+        const pos = particles.geometry.attributes.position;
         const vel = particles.userData.velocities;
-        const count = particleCount;
 
-        for (let i = 0; i < count * 3; i += 3) {
-          const px = posAttr.array[i];
-          const py = posAttr.array[i + 1];
-          const pz = posAttr.array[i + 2];
+        for (let i = 0; i < particleCount * 3; i += 3) {
+          const dx = mouse.x * 5 - pos.array[i];
+          const dy = mouse.y * 4 - pos.array[i + 1];
 
-          // Mouse attraction force
-          const dx = mouse.x * 6 - px;
-          const dy = mouse.y * 5 - py;
-          const dist = Math.sqrt(dx*dx + dy*dy);
+          vel[i]     += dx * 0.0003;
+          vel[i + 1] += dy * 0.0003;
 
-          if (dist > 0.1) {
-            vel[i]     += dx * 0.0008;
-            vel[i + 1] += dy * 0.0008;
-          }
+          pos.array[i]     += vel[i];
+          pos.array[i + 1] += vel[i + 1];
+          pos.array[i + 2] += vel[i + 2];
 
-          // Apply velocity
-          posAttr.array[i]     += vel[i];
-          posAttr.array[i + 1] += vel[i + 1];
-          posAttr.array[i + 2] += vel[i + 2];
+          vel[i] *= 0.965;
+          vel[i + 1] *= 0.965;
+          vel[i + 2] *= 0.965;
 
-          // Gentle damping
-          vel[i] *= 0.98;
-          vel[i + 1] *= 0.98;
-          vel[i + 2] *= 0.98;
-
-          // Reset particles that go too far
-          if (Math.abs(posAttr.array[i]) > 10 || Math.abs(posAttr.array[i + 1]) > 10) {
-            posAttr.array[i] = (Math.random() - 0.5) * 12;
-            posAttr.array[i + 1] = 8;
+          // Gentle reset for natural flow
+          if (Math.abs(pos.array[i]) > 11 || Math.abs(pos.array[i + 1]) > 9) {
+            pos.array[i] = (Math.random() - 0.5) * 16;
+            pos.array[i + 1] = 8 + Math.random() * 4;
           }
         }
 
-        posAttr.needsUpdate = true;
+        pos.needsUpdate = true;
         renderer.render(scene, camera);
       }
       animate();
@@ -247,23 +224,17 @@
       });
     }
 
-    // Falling Character
     window.onload = () => {
       initThree();
 
       const character = document.getElementById('character');
-
       gsap.fromTo(character, 
-        { y: -800, rotation: -35, opacity: 0 },
-        { y: 0, rotation: 0, opacity: 1, duration: 2.2, ease: "bounce.out", delay: 0.4 }
+        { y: -800, rotation: -40, opacity: 0 },
+        { y: 0, rotation: 0, opacity: 1, duration: 2.1, ease: "bounce.out", delay: 0.4 }
       );
 
-      character.addEventListener('mouseenter', () => {
-        gsap.to(character, { scale: 1.15, rotation: 15, duration: 0.7 });
-      });
-      character.addEventListener('mouseleave', () => {
-        gsap.to(character, { scale: 1, rotation: 0, duration: 0.9 });
-      });
+      character.addEventListener('mouseenter', () => gsap.to(character, { scale: 1.12, rotation: 12, duration: 0.7 }));
+      character.addEventListener('mouseleave', () => gsap.to(character, { scale: 1, rotation: 0, duration: 0.9 }));
     };
   </script>
 </body>
