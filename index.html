@@ -14,13 +14,17 @@
     
     body { font-family: 'Inter', sans-serif; }
     .heading { font-family: 'Space Grotesk', sans-serif; }
-    .hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0.85; }
+    .hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0.75; }
     
     .nav-link { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-    .nav-link:hover { color: #10b981; letter-spacing: 1px; }
+    .nav-link:hover { color: #10b981; letter-spacing: 2px; }
     
-    button, a {
+    .btn {
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 25px -5px rgb(16 185 129 / 0.2);
     }
   </style>
 </head>
@@ -39,7 +43,7 @@
       </div>
 
       <a href="https://instagram.com/jameslone.dev" target="_blank" 
-         class="px-6 py-3 border border-emerald-500/50 hover:border-emerald-500 rounded-full text-sm hover:bg-emerald-500 hover:text-black transition">
+         class="px-6 py-3 border border-emerald-500 rounded-full text-sm hover:bg-emerald-500 hover:text-black transition btn">
         Instagram
       </a>
     </div>
@@ -63,32 +67,103 @@
         
         <div class="flex flex-wrap gap-4">
           <a href="#work" 
-             class="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-black font-semibold rounded-full text-lg hover:scale-105">
+             class="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-black font-semibold rounded-full text-lg btn">
             View My Work
           </a>
           <a href="#contact" 
-             class="px-8 py-4 border border-white/60 hover:border-white rounded-full text-lg hover:bg-white/10">
+             class="px-8 py-4 border border-white/60 hover:border-white rounded-full text-lg btn hover:bg-white/10">
             Let's Connect
           </a>
         </div>
       </div>
 
       <!-- 3D Character -->
-      <div class="relative flex justify-center md:justify-end">
+      <div class="relative flex justify-center md:justify-end pt-10 md:pt-0">
         <img id="character" 
-             src="https://your-3d-character-image-link.jpg" 
-             alt="James Lone" 
-             class="w-72 md:w-96 drop-shadow-2xl transition-transform duration-700 hover:scale-105 hover:rotate-3"/>
+             src="https://i.imgur.com/YOUR_3D_IMAGE_LINK.jpg" 
+             alt="James Lone 3D Character" 
+             class="w-72 md:w-[380px] drop-shadow-2xl transition-all duration-700"/>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT, WORK, CONTACT sections remain similar... -->
+  <!-- ABOUT -->
+  <section id="about" class="py-24 bg-zinc-900">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <img src="https://i.imgur.com/YOUR_PORTRAIT_LINK.jpg" 
+               alt="James Lone" 
+               class="rounded-3xl w-full shadow-2xl"/>
+        </div>
+        <div class="space-y-8">
+          <h2 class="text-5xl font-bold heading">About Me</h2>
+          <p class="text-lg text-zinc-300 leading-relaxed">
+            I'm a passionate Software Engineering graduate who loves creating intuitive and beautiful digital experiences.
+          </p>
+          <p class="text-lg text-zinc-300 leading-relaxed">
+            As the founder of <span class="text-emerald-400 font-medium">HomiesDanceCrew</span>, I bring creativity, motion, and technical precision together in everything I create.
+          </p>
+          <p class="text-lg text-zinc-300 leading-relaxed">
+            Currently focused on UI/UX Design, Frontend Development, and exploring the future of human-AI interaction.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="py-24 bg-zinc-950">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-5xl font-bold heading text-center mb-16">Selected Work</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="group bg-zinc-900 rounded-3xl overflow-hidden hover:scale-105 transition-all duration-500">
+          <div class="h-72 bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center text-8xl">📱</div>
+          <div class="p-8">
+            <h3 class="text-2xl font-semibold">Food Delivery App</h3>
+            <p class="text-zinc-400 mt-2">Modern UI/UX Design with smooth user flows</p>
+          </div>
+        </div>
+        
+        <div class="group bg-zinc-900 rounded-3xl overflow-hidden hover:scale-105 transition-all duration-500">
+          <div class="h-72 bg-gradient-to-br from-rose-500 to-orange-500 flex items-center justify-center text-8xl">🎥</div>
+          <div class="p-8">
+            <h3 class="text-2xl font-semibold">HomiesDanceCrew</h3>
+            <p class="text-zinc-400 mt-2">Dance Videography & Creative Direction</p>
+          </div>
+        </div>
+        
+        <div class="group bg-zinc-900 rounded-3xl overflow-hidden hover:scale-105 transition-all duration-500">
+          <div class="h-72 bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-8xl">🌱</div>
+          <div class="p-8">
+            <h3 class="text-2xl font-semibold">Plant Care App</h3>
+            <p class="text-zinc-400 mt-2">Beautiful UI/UX + Interactive Prototype</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-24 bg-zinc-900">
+    <div class="max-w-4xl mx-auto text-center px-6">
+      <h2 class="text-5xl font-bold heading mb-8">Let's Create Something Great</h2>
+      <p class="text-xl text-zinc-400 mb-12">Open for freelance projects, collaborations, and dance events</p>
+      
+      <div class="text-4xl font-medium mb-6">+254 703 726 553</div>
+      <a href="mailto:your.email@example.com" class="text-emerald-400 text-2xl hover:underline">Send me an email</a>
+      
+      <div class="mt-16 flex justify-center gap-10 text-4xl">
+        <a href="https://instagram.com/jameslone.dev" target="_blank" class="hover:text-emerald-400"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/jameslone" target="_blank" class="hover:text-emerald-400"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </section>
 
   <script>
-    // Elegant Three.js Animation
+    // Three.js Minimal & Classy Animation
     let scene, camera, renderer, mainObject;
-    
+
     function initThree() {
       const canvas = document.getElementById('hero-canvas');
       renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
@@ -97,21 +172,20 @@
 
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
-      camera.position.set(0, 1, 6);
+      camera.position.set(0, 0.5, 7);
 
-      // Soft lighting
       const ambient = new THREE.AmbientLight(0xffffff, 0.6);
       scene.add(ambient);
-      const pointLight = new THREE.PointLight(0x10b981, 2.5, 100);
-      pointLight.position.set(5, 8, 5);
+      const pointLight = new THREE.PointLight(0x10b981, 2.8);
+      pointLight.position.set(5, 10, 8);
       scene.add(pointLight);
 
-      // Main Object - Torus with slow elegant movement
-      const geometry = new THREE.TorusGeometry(2.2, 0.8, 32, 100);
+      // Elegant Torus
+      const geometry = new THREE.TorusGeometry(2.8, 0.9, 32, 120);
       const material = new THREE.MeshPhongMaterial({
         color: 0x10b981,
         emissive: 0x052e16,
-        shininess: 80,
+        shininess: 90,
         transparent: true,
         opacity: 0.85
       });
@@ -120,11 +194,8 @@
 
       function animate() {
         requestAnimationFrame(animate);
-        
-        // Smooth, minimal movement
-        mainObject.rotation.x = Math.sin(Date.now() * 0.0003) * 0.15;
-        mainObject.rotation.y += 0.003;
-        
+        mainObject.rotation.y += 0.0025;
+        mainObject.rotation.x = Math.sin(Date.now() * 0.0004) * 0.1;
         renderer.render(scene, camera);
       }
       animate();
@@ -136,32 +207,21 @@
       });
     }
 
-    // GSAP Animations
+    // GSAP + Hover Effects
     window.onload = () => {
       initThree();
 
-      // Hero text animation
-      gsap.from("h1", { 
-        y: 80, 
-        opacity: 0, 
-        duration: 1.4, 
-        ease: "power4.out" 
-      });
-      
-      gsap.from(".text-2xl", { 
-        y: 40, 
-        opacity: 0, 
-        duration: 1.2, 
-        delay: 0.4 
-      });
+      // Hero Animation
+      gsap.from("h1", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" });
+      gsap.from(".text-2xl", { y: 60, opacity: 0, duration: 1.3, delay: 0.4 });
 
-      // Character hover effect
+      // Character Hover
       const character = document.getElementById('character');
       character.addEventListener('mouseenter', () => {
-        gsap.to(character, { scale: 1.08, rotation: 6, duration: 0.6, ease: "power2.out" });
+        gsap.to(character, { scale: 1.08, rotation: 8, duration: 0.8, ease: "power2.out" });
       });
       character.addEventListener('mouseleave', () => {
-        gsap.to(character, { scale: 1, rotation: 0, duration: 0.6, ease: "power2.out" });
+        gsap.to(character, { scale: 1, rotation: 0, duration: 0.8, ease: "power2.out" });
       });
     };
   </script>
